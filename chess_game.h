@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cstdint>
-#include "utility.h"
+
 
 #define get_bit(bitboard, square) (bitboard & (1ULL << square))
 #define set_bt1(bitboard, square) (bitboard |= (1ULL << square))
