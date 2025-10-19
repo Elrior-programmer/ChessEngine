@@ -9,6 +9,7 @@ public:
     Bitboard(unsigned long long val);
     ~Bitboard();
     unsigned long long get_value() const;
+    void set_value(unsigned long long val);
     unsigned long long get_bit(int square);
     void set_bt1(int square);
     void write();

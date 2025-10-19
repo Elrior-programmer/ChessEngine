@@ -13,6 +13,10 @@ unsigned long long Bitboard::get_value() const {
     return this->value;
 }
 
+void Bitboard::set_value(unsigned long long val) {
+    this->value = val;
+}
+
 unsigned long long Bitboard::get_bit(int square) {
     return (this->value & (1ULL << square));
 }
