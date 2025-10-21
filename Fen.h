@@ -1,12 +1,12 @@
 #pragma once
 #include <iostream>
+#include "Bitboard.h"
 #include <string>
-#include <cstdint>
 #include <sstream>
 #include <vector>
 
-void read_FEN(std::string fen, uint64_t* w_k, uint64_t* w_q, uint64_t* w_p, uint64_t* w_r, uint64_t* w_b, uint64_t* w_n,
-	uint64_t* b_k, uint64_t* b_q, uint64_t* b_p, uint64_t* b_r, uint64_t* b_b, uint64_t* b_n,
+void read_FEN(std::string fen, Bitboard* w_k, Bitboard* w_q, Bitboard* w_p, Bitboard* w_r, Bitboard* w_b, Bitboard* w_n,
+	Bitboard* b_k, Bitboard* b_q, Bitboard* b_p, Bitboard* b_r, Bitboard* b_b, Bitboard* b_n,
 	bool *turn, bool *w_s_c, bool *w_l_c, bool *b_s_c, bool *b_l_c,
-	uint16_t *e_n, int *h_m, int *f_m);
+	Bitboard *e_n, int *h_m, int *f_m);
 

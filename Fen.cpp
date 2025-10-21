@@ -2,76 +2,76 @@
 
 /* We start reading fen from black side*/
 
-void read_FEN(std::string fen, uint64_t* w_k, uint64_t* w_q, uint64_t* w_p, uint64_t* w_r, uint64_t* w_b, uint64_t* w_n,
-	uint64_t* b_k, uint64_t* b_q, uint64_t* b_p, uint64_t* b_r, uint64_t* b_b, uint64_t* b_n,
-	bool* turn, bool* w_s_c, bool* w_l_c, bool* b_s_c, bool* b_l_c,
-	uint16_t* e_n, int* h_m, int* f_m)
+void read_FEN(std::string fen, Bitboard* w_k, Bitboard* w_q, Bitboard* w_p, Bitboard* w_r, Bitboard* w_b, Bitboard* w_n,
+	Bitboard* b_k, Bitboard* b_q, Bitboard* b_p, Bitboard* b_r, Bitboard* b_b, Bitboard* b_n,
+	bool *turn, bool *w_s_c, bool *w_l_c, bool *b_s_c, bool *b_l_c,
+	Bitboard *e_n, int *h_m, int *f_m)
 {
 	std::vector<std::string> fenSplit;
 
 	std::stringstream ss(fen);
 	std::string token;
 
-	while (ss >> token) {  // domyœlnie tnie po spacji
+	while (ss >> token) {  // domyï¿½lnie tnie po spacji
 		fenSplit.push_back(token);
 	}
 
-	uint64_t mask = 1;
+	unsigned long long mask = 1ULL;
 	for (short i = 0; i < fenSplit[0].size(); i++) {
 		char temp = fen[i];
 		switch (temp) {
 			//Kings
 		case 'k':
-			*b_k += mask;
+			b_k->set_value(b_k->get_value() + mask);
 			mask = mask << 1;
 			break;
 		case 'K':
-			*w_k += mask;
+			w_k->set_value(w_k->get_value() + mask);
 			mask = mask << 1;
 			break;
 			// Queens
 		case 'q':
-			*b_q += mask;
+			b_q->set_value(b_q->get_value()+mask);
 			mask = mask << 1;
 			break;
 		case 'Q':
-			*w_q += mask;
+			w_q->set_value(w_q->get_value()+mask);
 			mask = mask << 1;
 			break;
 			// Rooks
 		case 'r':
-			*b_r += mask;
+			b_r->set_value(b_r->get_value()+mask);
 			mask = mask << 1;
 			break;
 		case 'R':
-			*w_r += mask;
+			w_r->set_value(w_r->get_value()+mask);
 			mask = mask << 1;
 			break;
 			//Bishops
 		case 'b':
-			*b_b += mask;
+			b_b->set_value(b_b->get_value()+mask);
 			mask = mask << 1;
 			break;
 		case 'B':
-			*w_b += mask;
+			w_b->set_value(w_b->get_value()+mask);
 			mask = mask << 1;
 			break;
 			// Knights
 		case 'n':
-			*b_n += mask;
+			b_n->set_value(b_n->get_value()+mask);
 			mask = mask << 1;
 			break;
 		case 'N':
-			*w_n += mask;
+			w_n->set_value(w_n->get_value()+mask);
 			mask = mask << 1;
 			break;
 			// Pawns
 		case 'p':
-			*b_p += mask;
+			b_p->set_value(b_p->get_value()+mask);
 			mask = mask << 1;
 			break;
 		case 'P':
-			*w_p += mask;
+			w_p->set_value(w_p->get_value()+mask);
 			mask = mask << 1;
 			break;
 			// Numbers
@@ -132,7 +132,7 @@ void read_FEN(std::string fen, uint64_t* w_k, uint64_t* w_q, uint64_t* w_p, uint
 	else {
 		*b_l_c = false;
 	}
-	uint16_t mask2 = 1;
+	unsigned long long mask2 = 1;
 	if (fenSplit[3] == "-") {
 		mask2 = 0;
 	}
@@ -141,7 +141,7 @@ void read_FEN(std::string fen, uint64_t* w_k, uint64_t* w_q, uint64_t* w_p, uint
 	}
 	mask2 = mask2 << fenSplit[3][0] - 'a';
 
-	*e_n = mask2;
+	e_n->set_value(mask2);
 	*h_m = stoi(fenSplit[4]);
 	*f_m = stoi(fenSplit[5]);
 }
