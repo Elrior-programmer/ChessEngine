@@ -25,6 +25,10 @@ void Bitboard::set_bt1(int square) {
     this->value |= (1ULL << square);
 }
 
+void Bitboard::set_bt0(int square) {
+    if (this->get_bit(square)) this->value ^= (1ULL << square); 
+}
+
 void Bitboard::write() {
     std::cout << "  a b c d e f g h " << std::endl;
     unsigned long long mask = 1ULL;

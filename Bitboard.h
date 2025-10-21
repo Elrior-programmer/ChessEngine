@@ -12,6 +12,7 @@ public:
     void set_value(unsigned long long val);
     unsigned long long get_bit(int square);
     void set_bt1(int square);
+    void set_bt0(int square);
     void write();
 };
 
